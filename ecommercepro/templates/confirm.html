@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Confirm Order</title>
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+}
+.container {
+    padding: 50px;
+    background-color: grey;
+    width:500px;
+    margin:80px;
+}
+
+input[type=text], input[type=password] {
+  width: 300px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  outline: none;
+}
+#select {
+  width: 300px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+#select{
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 125px;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+
+</style>
+</head>
+<body>
+    <form method="post" action="{% url 'cart:cart_detail' %}">
+        {% csrf_token %}
+
+        <center>
+        <div class="container">
+            <h1>Confirm Order</h1>
+            <input type="text" name="name" placeholder= "Name" size="15" required /><br>
+            <input type="text" name="address" placeholder="Address" required /><br>
+            <input type="text" name="phone_no" placeholder="Phone Number" size="15"required /><br>
+            <select name=”district” id="select">
+                <option>District</option>
+                <optgroup label="Kannur">
+                    <option value=”Kambil”>Kambil</option>
+                    <option value=”Payyannur”>Payyannur</option>
+                    <option value=”Puthyatheru”>Puthyatheru</option>
+                </optgroup>
+                <optgroup label="Kochi">
+                    <option value=”Mattachery”>Mattachery</option>
+                    <option value=”Fort_Kochi”>Fort Kochi</option>
+                    <option value=”Kodanad”>Kodanad</option>
+                </optgroup>
+                <optgroup label="Kozhikode">
+                    <option value=”Mattachery”>Vadakara</option>
+                    <option value=”Fort_Kochi”>Quilandy</option>
+                    <option value=”Kodanad”>Beypore</option>
+                </optgroup>
+            </select><br>
+            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Confirm</button><br><br>
+            <h4><a href="{% url 'cart:cart_detail' %}" style="color:black;">Back</a></h4>
+        </div>
+        </center>
+    </form>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <h2>Order placed</h2>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="myFunction()">OK</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<script type="text/javascript">
+function myFunction() {
+    window.location.href ={% url 'cart:cart_detail' %};
+}
+</script>
+
+</body>
+</html>
